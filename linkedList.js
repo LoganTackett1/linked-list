@@ -7,15 +7,15 @@ class Node {
 
 class LinkedList {
     constructor () {
-        this.head = null,
+        this.headNode = null,
         this.length = 0
     }
     append (value) {
         const newNode = new Node();
         newNode.value = value;
-        let temp = this.head;
+        let temp = this.headNode;
         if (temp === null) {
-            this.head = newNode;
+            this.headNode = newNode;
         } else {
             while (temp.nextNode != null) {
                 temp = temp.nextNode;
@@ -27,9 +27,21 @@ class LinkedList {
     prepend (value) {
         const newNode = new Node();
         newNode.value = value;
-        newNode.nextNode = this.head;
-        this.head = newNode;
+        newNode.nextNode = this.headNode;
+        this.headNode = newNode;
         this.length += 1;
+    }
+    get size () {
+        return this.length;
+    }
+    set size (param) {
+        throw new Error("Cannot set size of linked list");
+    }
+    get head () {
+        return this["headNode"];
+    }
+    set head (param) {
+        throw new Error("Cannot set head of linked list directly, use prepend method");
     }
 }
 
@@ -37,9 +49,5 @@ const myList = new LinkedList();
 myList.prepend("dog");
 myList.prepend("cat");
 myList.append("lion");
-console.log(myList);
-const myList2 = new LinkedList();
-myList2.append("dog");
-myList2.append("cat");
-myList2.prepend("lion");
-console.log(myList2);
+
+
